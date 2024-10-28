@@ -1,0 +1,37 @@
+/* style.css */
+
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #222; /* Dark background for contrast */
+    color: white; /* White text color for readability */
+    text-align: center; /* Center-align text */
+    font-family: Arial, sans-serif; /* Font family */
+}
+
+canvas {
+    display: block; /* Make canvas a block element */
+    margin: 0 auto; /* Center the canvas */
+    background: #333; /* Canvas background color */
+}
+
+#score {
+    position: absolute; /* Positioning for the score display */
+    top: 10px; /* Top margin */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust position for center alignment */
+    font-size: 24px; /* Font size for the score */
+}
+
+#log {
+    position: fixed; /* Fixed position for logs */
+    bottom: 10px; /* Bottom margin */
+    left: 10px; /* Left margin */
+    color: white; /* Text color */
+    max-height: 200px; /* Max height for log area */
+    overflow-y: auto; /* Enable vertical scrolling */
+    background: rgba(0, 0, 0, 0.7); /* Slightly transparent background for logs */
+    padding: 10px; /* Padding around log text */
+    border-radius: 5px; /* Rounded corners for log area */
+}

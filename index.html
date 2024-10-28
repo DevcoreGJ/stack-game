@@ -4,25 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stack Game</title>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background: #222;
-            color: white;
-            text-align: center;
-            font-family: Arial, sans-serif;
-        }
-        canvas {
-            display: block;
-            margin: 0 auto;
-            background: #333;
-        }
-    </style>
+    <meta name="description" content="A simple and fun stack building game.">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="score">Score: 0</div>
     <canvas id="gameCanvas"></canvas>
+    <div id="log" style="position: fixed; bottom: 10px; left: 10px; color: white; max-height: 200px; overflow-y: auto;"></div>
     <script src="game.js"></script>
 </body>
 </html>
