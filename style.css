@@ -1,37 +1,32 @@
-/* style.css */
-
 body, html {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background: #222; /* Dark background for contrast */
-    color: white; /* White text color for readability */
-    text-align: center; /* Center-align text */
-    font-family: Arial, sans-serif; /* Font family */
+    background: #222;
+    color: white;
+    text-align: center;
+    font-family: Arial, sans-serif;
 }
 
 canvas {
-    display: block; /* Make canvas a block element */
-    margin: 0 auto; /* Center the canvas */
-    background: #333; /* Canvas background color */
+    display: block;
+    margin: 0 auto;
+    background: #333;
 }
 
 #score {
-    position: absolute; /* Positioning for the score display */
-    top: 10px; /* Top margin */
-    left: 50%; /* Center horizontally */
-    transform: translateX(-50%); /* Adjust position for center alignment */
-    font-size: 24px; /* Font size for the score */
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
 }
 
-#log {
-    position: fixed; /* Fixed position for logs */
-    bottom: 10px; /* Bottom margin */
-    left: 10px; /* Left margin */
-    color: white; /* Text color */
-    max-height: 200px; /* Max height for log area */
-    overflow-y: auto; /* Enable vertical scrolling */
-    background: rgba(0, 0, 0, 0.7); /* Slightly transparent background for logs */
-    padding: 10px; /* Padding around log text */
-    border-radius: 5px; /* Rounded corners for log area */
+#startScreen, #gameOverScreen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    text-align: center;
 }
