@@ -10,6 +10,7 @@ let speed = initialSpeed; // Current speed
 let direction = 1;
 let score = 0; // Initialize score
 let isAddingBlock = false; // Flag to manage block addition
+let successfulStacks = 0; // Track successful stacks in this game session
 
 // Initialize the game
 function init() {
@@ -79,6 +80,7 @@ function gameOver() {
     // Reset the game
     stack = [];
     score = 0; // Reset score
+    successfulStacks = 0; // Reset successful stacks count
     init(); // Restart the game
     speed = initialSpeed; // Reset speed to initial on game over
 }
@@ -93,8 +95,9 @@ function addBlock() {
     stack.push(newBlock);
     score++; // Increment score
 
-    // Increment speed for every 10 blocks stacked
-    if (score % 10 === 0) {
+    // Increment speed for every 10 blocks stacked successfully
+    successfulStacks++;
+    if (successfulStacks % 10 === 0) {
         speed += 1; // Increase speed
     }
 
