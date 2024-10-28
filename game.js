@@ -90,6 +90,9 @@ function addBlock() {
     stack.push(newBlock);
     score++; // Increment score
 
+    // Update score display immediately after adding the block
+    document.getElementById('score').innerText = `Score: ${score}`; 
+
     // Allow block addition again after a short delay
     setTimeout(() => {
         isAddingBlock = false;
@@ -97,8 +100,11 @@ function addBlock() {
 }
 
 // Event listeners for user interactions
-window.addEventListener('click', addBlock);
-window.addEventListener('touchstart', addBlock);
+canvas.addEventListener('click', addBlock); // Only attach click to canvas
+canvas.addEventListener('touchstart', (e) => {
+    e.preventDefault(); // Prevent default touch behavior
+    addBlock();
+});
 window.addEventListener('resize', resizeCanvas);
 
 // Start the game
