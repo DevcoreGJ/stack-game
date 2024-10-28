@@ -8,6 +8,7 @@ let pos = 0;
 let speed = 2;
 let direction = 1;
 let score = 0; // Initialize score
+let canClick = true; // To prevent double click registration
 
 // Initialize the game
 function init() {
@@ -20,9 +21,6 @@ function init() {
 function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    stack.forEach(block => {
-        block.pos = (canvas.width - block.size) / 2;
-    });
 }
 
 // Main game loop
@@ -39,6 +37,14 @@ function gameLoop() {
         direction *= -1;
     }
 
+    // Center the blocks vertically in the canvas
+    if (stack.length > 10) {
+        let shiftAmount = (blockHeight * (stack.length - 10)); // Shift up when more than 10 blocks
+        for (let block of stack) {
+            block.posY -= shiftAmount; // Adjust Y position of all blocks
+        }
+    }
+
     requestAnimationFrame(gameLoop);
 }
 
@@ -47,6 +53,7 @@ function drawBlocks() {
     stack.forEach((block, index) => {
         context.fillRect(block.pos, canvas.height - (index + 1) * blockHeight, blockWidth, blockHeight);
     });
+    document.getElementById('score').innerText = `Score: ${score}`; // Update score display
 }
 
 // Check for collisions with the last block
@@ -75,10 +82,15 @@ function gameOver() {
 
 // Add a new block to the stack and update score
 function addBlock() {
+    if (!canClick) return; // Prevent double-click registration
+    canClick = false; // Disable further clicks until this one is processed
+
     let lastBlock = stack[stack.length - 1];
     let newBlock = { size: lastBlock.size, pos: lastBlock.pos };
     stack.push(newBlock);
     score++; // Increment score
+
+    setTimeout(() => { canClick = true; }, 300); // Re-enable clicks after a short delay
 }
 
 // Event listeners for user interactions
