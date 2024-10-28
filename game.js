@@ -5,7 +5,8 @@ let stack = [];
 const blockHeight = 30; // Block height
 const blockWidth = blockHeight; // Set width equal to height
 let pos = 0;
-let speed = 2;
+let initialSpeed = 2; // Initial speed
+let speed = initialSpeed; // Current speed
 let direction = 1;
 let score = 0; // Initialize score
 let isAddingBlock = false; // Flag to manage block addition
@@ -14,6 +15,7 @@ let isAddingBlock = false; // Flag to manage block addition
 function init() {
     resizeCanvas();
     stack.push({ size: blockWidth, pos: pos });
+    speed = initialSpeed; // Reset speed on init
     gameLoop();
 }
 
@@ -78,6 +80,7 @@ function gameOver() {
     stack = [];
     score = 0; // Reset score
     init(); // Restart the game
+    speed = initialSpeed; // Reset speed to initial on game over
 }
 
 // Add a new block to the stack and update score
@@ -89,6 +92,11 @@ function addBlock() {
     let newBlock = { size: lastBlock.size, pos: lastBlock.pos };
     stack.push(newBlock);
     score++; // Increment score
+
+    // Increment speed for every 10 blocks stacked
+    if (score % 10 === 0) {
+        speed += 1; // Increase speed
+    }
 
     // Update score display immediately after adding the block
     document.getElementById('score').innerText = `Score: ${score}`; 
