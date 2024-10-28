@@ -8,7 +8,7 @@ let pos = 0;
 let speed = 2;
 let direction = 1;
 let score = 0; // Initialize score
-let canClick = true; // To prevent double click registration
+let isAddingBlock = false; // Flag to manage block addition
 
 // Initialize the game
 function init() {
@@ -82,15 +82,18 @@ function gameOver() {
 
 // Add a new block to the stack and update score
 function addBlock() {
-    if (!canClick) return; // Prevent double-click registration
-    canClick = false; // Disable further clicks until this one is processed
+    if (isAddingBlock) return; // Prevent multiple clicks from adding blocks
+    isAddingBlock = true; // Set the flag to prevent further clicks
 
     let lastBlock = stack[stack.length - 1];
     let newBlock = { size: lastBlock.size, pos: lastBlock.pos };
     stack.push(newBlock);
     score++; // Increment score
 
-    setTimeout(() => { canClick = true; }, 300); // Re-enable clicks after a short delay
+    // Allow block addition again after a short delay
+    setTimeout(() => {
+        isAddingBlock = false;
+    }, 300); // Delay to prevent rapid clicking
 }
 
 // Event listeners for user interactions
