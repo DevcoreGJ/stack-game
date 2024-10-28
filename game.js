@@ -1,17 +1,15 @@
 const canvas = document.getElementById('gameCanvas');
 const context = canvas.getContext('2d');
-const logElement = document.getElementById('log');
 
 let stack = [];
-let size = 50; // size adjusted for square
+let size = 30; // Set both width and height to 30 pixels
 let pos = 0;
 let speed = 2;
 let direction = 1;
-let score = 0;
 
 function init() {
     resizeCanvas();
-    addBlock(); // Start with one block
+    stack.push({ size: size, pos: pos });
     gameLoop();
 }
 
@@ -27,7 +25,7 @@ function gameLoop() {
     context.clearRect(0, 0, canvas.width, canvas.height);
 
     stack.forEach((block, index) => {
-        context.fillRect(block.pos, canvas.height - (index + 1) * block.size, block.size, block.size);
+        context.fillRect(block.pos, canvas.height - (index + 1) * block.size, block.size, block.size); // Use size for both width and height
     });
 
     let currentBlock = stack[stack.length - 1];
@@ -43,15 +41,6 @@ function addBlock() {
     let lastBlock = stack[stack.length - 1];
     let newBlock = { size: lastBlock.size, pos: lastBlock.pos };
     stack.push(newBlock);
-    score++;
-    updateLog(`Block added. Current score: ${score}`);
-}
-
-function updateLog(message) {
-    logElement.innerHTML += message + '<br>';
-    if (logElement.childElementCount > 10) {
-        logElement.removeChild(logElement.firstChild);
-    }
 }
 
 window.addEventListener('click', addBlock);
